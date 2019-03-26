@@ -1,14 +1,21 @@
 let script = document.createElement('script')
 script.textContent = `
 const tlRefresh = () => {
-  const active = document.activeElement
+  const modal = window.document.getElementsByClassName(
+    'DraftEditor-root'
+  )
 
-  const scrollY = window.pageYOffset
+  let scrollY = window.pageYOffset
 
-  if (active === 'body' || scrollY === 0) {
-    const homeEl = window.document.querySelector(
-      '[aria-label="ホームタイムライン"]'
-    )
+  const newHomeEl = window.document.querySelector(
+    '[aria-label="ホームタイムライン (新しい未読ツイート)"]'
+  )
+
+  const homeEl = window.document.querySelector(
+    '[aria-label="ホームタイムライン"]'
+  )
+
+  if (modal.length === 0 && scrollY === 0) {
 
     if (homeEl) {
       homeEl.click()
@@ -17,9 +24,6 @@ const tlRefresh = () => {
       }, 1000)
     }
 
-    const newHomeEl = window.document.querySelector(
-      '[aria-label="ホームタイムライン (新しい未読ツイート)"]'
-    )
 
     if (newHomeEl) {
       newHomeEl.click()
@@ -27,6 +31,8 @@ const tlRefresh = () => {
         newHomeEl.click()
       }, 1000)
     }
+
+    scrollY = 0
   }
 }
 
