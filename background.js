@@ -1,29 +1,32 @@
 let script = document.createElement('script')
 script.textContent = `
 const tlRefresh = () => {
-
   const active = document.activeElement
 
   const scrollY = window.pageYOffset
 
-  if(active !== 'body' || scrollY !== 0 ) return 0;
+  if (active === 'body' || scrollY === 0) {
+    const homeEl = window.document.querySelector(
+      '[aria-label="ホームタイムライン"]'
+    )
 
-  const homeEl = window.document.querySelector('[aria-label="ホームタイムライン"]')
-
-  if (homeEl) {
-    homeEl.click()
-    setTimeout(() => {
+    if (homeEl) {
       homeEl.click()
-    }, 1000);
-  }
+      setTimeout(() => {
+        homeEl.click()
+      }, 1000)
+    }
 
-  const newHomeEl = window.document.querySelector('[aria-label="ホームタイムライン (新しい未読ツイート)"]')
+    const newHomeEl = window.document.querySelector(
+      '[aria-label="ホームタイムライン (新しい未読ツイート)"]'
+    )
 
-  if (newHomeEl) {
-    newHomeEl.click()
-    setTimeout(() => {
+    if (newHomeEl) {
       newHomeEl.click()
-    }, 1000);
+      setTimeout(() => {
+        newHomeEl.click()
+      }, 1000)
+    }
   }
 }
 
