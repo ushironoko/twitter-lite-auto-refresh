@@ -1,38 +1,43 @@
 let script = document.createElement('script')
 script.textContent = `
 const tlRefresh = () => {
-  const modal = window.document.getElementsByClassName(
-    'DraftEditor-root'
-  )
+  const url = location.href
 
-  let scrollY = window.pageYOffset
+  if(url === 'https://twitter.com/home') {
 
-  const newHomeEl = window.document.querySelector(
-    '[aria-label="ホームタイムライン (新しい未読ツイート)"]'
-  )
+    const modal = window.document.getElementsByClassName(
+      'DraftEditor-root'
+    )
 
-  const homeEl = window.document.querySelector(
-    '[aria-label="ホームタイムライン"]'
-  )
+    let scrollY = window.pageYOffset
 
-  if (modal.length === 0 && scrollY === 0) {
+    const newHomeEl = window.document.querySelector(
+      '[aria-label="ホームタイムライン (新しい未読ツイート)"]'
+    )
 
-    if (homeEl) {
-      homeEl.click()
-      setTimeout(() => {
+    const homeEl = window.document.querySelector(
+      '[aria-label="ホームタイムライン"]'
+    )
+
+    if (modal.length === 0 && scrollY === 0) {
+
+      if (homeEl) {
         homeEl.click()
-      }, 1000)
-    }
+        setTimeout(() => {
+          homeEl.click()
+        }, 1000)
+      }
 
 
-    if (newHomeEl) {
-      newHomeEl.click()
-      setTimeout(() => {
+      if (newHomeEl) {
         newHomeEl.click()
-      }, 1000)
-    }
+        setTimeout(() => {
+          newHomeEl.click()
+        }, 1000)
+      }
 
-    scrollY = 0
+      scrollY = 0
+    }
   }
 }
 
